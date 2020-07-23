@@ -71,8 +71,15 @@ const ContactNavigator = createStackNavigator({
 const MenuNavigator = createStackNavigator({
     Menu: { screen: Menu,
         navigationOptions: ({ navigation }) => ({
-            headerLeft: <Icon name="menu" size={24} 
-            color= 'white'
+          headerStyle: {
+            backgroundColor: "#512DA8"
+        },
+        headerTitleStyle: {
+            color: "#fff"            
+        },
+        headerTintColor: "#fff",
+        headerLeft: <Icon name="menu" size={24} 
+        color= 'white'
             onPress={ () => navigation.toggleDrawer() } />          
           }) 
         },
@@ -204,9 +211,9 @@ class Main extends Component {
  
     return (
         
-            <View style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
             <Drawer/>
-            </View>
+        </View>
         
     );
   }
