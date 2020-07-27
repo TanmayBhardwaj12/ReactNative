@@ -39,7 +39,8 @@ export const fetchDishes = () => (dispatch) => {
     .then(response => {
         if (response.ok) {
           return response;
-        } else {
+        } 
+        else {
           var error = new Error('Error ' + response.status + ': ' + response.statusText);
           error.response = response;
           throw error;
@@ -152,4 +153,22 @@ export const postFavorite = (dishId)  => (dispatch) => {
 export const addFavorite = (dishId) => ({
     type: ActionTypes.ADD_FAVORITE,
     payload: dishId
+});
+
+export const postComment = (dishId,rating,author,comment)  => (dispatch) => {
+    newComment={
+        dishId : dishId,
+        rating : rating,
+        author: author,
+        comment: comment,
+        date: new Date()
+    }
+    setTimeout(() => {
+        dispatch(addComment(newComment));
+    }, 2000);
+};
+
+export const addComment = (newComment) => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: newComment
 });
