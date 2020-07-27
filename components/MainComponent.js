@@ -6,7 +6,7 @@ import AboutUs from './AboutComponent';
 import ContactUs from './ContactComponent';
 import Reservation from './ReservationComponent';
 import Favorites from './FavoriteComponent';
-import { View, Platform, Text, ScrollView, Image, StyleSheet,SafeAreaView } from 'react-native';
+import { View, Text, ScrollView, Image, StyleSheet,SafeAreaView } from 'react-native';
 import { createStackNavigator  } from 'react-navigation-stack';
 import { NavigationContainer} from '@react-navigation/native';
 import { createAppContainer } from 'react-navigation';
@@ -42,7 +42,7 @@ const FavoritesNavigator = createStackNavigator({
         color: "#fff"            
     },
     headerTintColor: "#fff",
-    headerLeft: <Icon name="menu" size={24}
+    headerLeft: ()=><Icon name="menu" size={24}
       iconStyle={{ color: 'white' }} 
       onPress={ () => navigation.toggleDrawer() } />    
   })
@@ -77,7 +77,7 @@ const AboutNavigator = createStackNavigator({
           color: "#fff"            
       },
       headerTintColor: "#fff",
-      headerLeft: <Icon name="menu" size={24} 
+      headerLeft: ()=><Icon name="menu" size={24} 
             color= 'white'
             onPress={ () => navigation.toggleDrawer() } 
             />   
@@ -95,7 +95,7 @@ const ContactNavigator = createStackNavigator({
           color: "#fff"            
       },
       headerTintColor: "#fff",
-      headerLeft: <Icon name="menu" size={24} 
+      headerLeft: ()=><Icon name="menu" size={24} 
             color= 'white'
             onPress={ () => navigation.toggleDrawer() } 
             />   
@@ -114,7 +114,7 @@ const MenuNavigator = createStackNavigator({
             color: "#fff"            
         },
         headerTintColor: "#fff",
-        headerLeft: <Icon name="menu" size={24} 
+        headerLeft: ()=><Icon name="menu" size={24} 
         color= 'white'
             onPress={ () => navigation.toggleDrawer() } />          
           }) 
@@ -144,7 +144,7 @@ const HomeNavigator = createStackNavigator({
           color: "#fff"            
       },
       headerTintColor: "#fff",
-      headerLeft: <Icon name="menu" size={24} 
+      headerLeft: ()=><Icon name="menu" size={24} 
             color= 'white'
             onPress={ () => navigation.toggleDrawer() } 
             />     
