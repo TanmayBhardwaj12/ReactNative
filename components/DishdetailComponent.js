@@ -67,6 +67,13 @@ function RenderDish(props) {
             return false;
     }
 
+    const recognizeComment = ({moveX, moveY, dx, dy}) => {
+        if(dx > 200)
+            return true;
+        else
+            return false;
+    }
+
     const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: (e, gestureState) => {
             return true;
@@ -87,6 +94,10 @@ function RenderDish(props) {
                     ],
                     { cancelable: false }
                 );
+
+            if(recognizeComment(gestureState))
+                    props.onSelect();
+
 
             return true;
         }
@@ -119,7 +130,7 @@ function RenderDish(props) {
                                 name='pencil'
                                 type='font-awesome'
                                 color='#4B0082'
-                                onPress={() => props.addComment()} />
+                                onPress={() => props.onSelect()} />
                         </View>
                     </Card>
                 </Animatable.View>
@@ -171,7 +182,7 @@ class Dishdetail extends Component {
                 <RenderDish dish={this.props.dishes.dishes[+dishId]}
                     favorite={this.props.favorites.some(el => el === dishId)}
                     onPress={()=>this.markFavorite(dishId)}
-                    addComment={() => this.addComment()}/>
+                    onSelect={() => this.toggleModal()}/>
                 <RenderComments comments={this.props.comments.comments.filter((comment) => comment.dishId === dishId)} />
 
                 <Modal animationType={"slide"} transparent={false}

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Picker, Text, Switch, Button,Modal } from 'react-native';
+import { View, StyleSheet, Picker, Text, Switch, Button,Modal,Alert} from 'react-native';
 import {Input} from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import * as Animatable from 'react-native-animatable';
+import {Notifications} from 'expo';
 
 class Resevation extends Component {
     constructor(props) {
@@ -26,7 +28,16 @@ class Resevation extends Component {
     }
     handleReservation() {
         console.log(JSON.stringify(this.state));
-        this.toggleModal();
+        Alert.alert(
+            'Your Reservation OK ? ',
+            'No. of Guests: ' + this.state.guests + '\nSmoking? '+this.state.smoking+'\nDate and Time: '+this.state.date,
+            [
+            {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+            {text: 'OK', onPress: () =>   this.resetForm()},
+            ],
+            { cancelable: false }
+        );
+        this.resetForm();
     }
     resetForm() {
         this.setState({
@@ -38,6 +49,7 @@ class Resevation extends Component {
     }
     render() {
         return (
+            <Animatable.View animation="zoomIn" duration={2000} delay={1000}>
             <ScrollView>
                 <View style={styles.formRow}>
                     <Text style={styles.formLabel}>Number Of Guests</Text>
@@ -144,7 +156,7 @@ class Resevation extends Component {
                 accessibilityLabel="Learn more about this purple button"
             />
         </View>
-        <Modal animationType = {"slide"} transparent = {false}
+        {/*<Modal animationType = {"slide"} transparent = {false}
                     visible = {this.state.showModal}
                     onDismiss = {() => this.toggleModal() }
                     onRequestClose = {() => this.toggleModal() }>
@@ -160,8 +172,9 @@ class Resevation extends Component {
                             title="Close" 
                             />
                     </View>
-        </Modal>
+            </Modal>*/}
         </ScrollView >
+        </Animatable.View>
         )
     }
 }
